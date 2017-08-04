@@ -1,3 +1,8 @@
+const equation = document.getElementById('equation');
+const solution = document.querySelector('div#solution');
+const buttons = document.getElementsByTagName('button');
+let equationArray;
+
 function multiply(a, b) {
 	let answer = parseInt(a) * parseInt(b);
   return answer;
@@ -15,10 +20,19 @@ function subtract(a, b) {
   return answer;
 }
 
-const equation = document.getElementById('equation');
-const solution = document.querySelector('div#solution');
-const buttons = document.getElementsByTagName('button');
-let equationArray;
+function reset() { // reset values after a calculation
+  sum = 0;
+  difference = 0;
+  product = 1;
+  quotient = 1;
+}
+
+function setIndexRef(equation) { // set the index references for loop
+  let previous = equation.indexOf(equation[i-1]);
+  let current = equation.indexOf(equation[i]);
+  let next = equation.indexOf(equation[i+1]);
+}
+
 
 for (let i = 0; i < buttons.length; i++) {
   const button = buttons[i];
