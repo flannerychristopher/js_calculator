@@ -42,3 +42,51 @@ for (let i = 0; i < buttons.length; i++) {
     }
   });
 }
+
+function calculator(equation) {
+  for (i = 0; i < equation.length; i++) {
+
+    let previous = equation.indexOf(equation[i-1]);
+    let current = equation.indexOf(equation[i]);
+    let next = equation.indexOf(equation[i+1]);
+
+    if ( equation[i] === 'x' ) {
+      if ( previous === -1 ) {
+        product *= parseInt(equation[i+1]);
+        equation.splice(current, 2);
+        calculate(equation);
+      } else {
+        let answer = multiply(equation[i-1], equation[i+1]);
+        product *= answer;
+        equation.splice(previous, 3);
+        calculate(equation);
+      }
+
+    } else if ( equation[i] === '+' ) {
+      if ( previous === -1 ) {
+        sum += parseInt(equation[i+1]);
+        equation.splice(current, 2);
+        calculate(equation);
+      } else {
+        let answer = add(equation[i-1], equation[i+1]);
+        sum += answer;
+        equation.splice(previous, 3);
+        calculate(equation);
+      }
+
+    } else if (equation[i] === '-') {
+      if ( previous === -1 ) {
+        difference -= parseInt(equation[i+1]);
+        equation.splice(current, 2);
+        calculate(equation);
+      } else {
+        let answer = subtract(equation[i-1], equation[i+1]);
+        difference += answer;
+        equation.splice(previous, 3);
+        calculate(equation);
+      }
+    }
+  }
+  let solution = (product / quotient) + sum + difference;
+  return solution;
+}
