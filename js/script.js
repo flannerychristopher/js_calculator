@@ -5,6 +5,7 @@ const calc = {
     calc.add(array);
     calc.subtract(array);
     console.log(array);
+    return array;
   },
 
   multiply: (array) => {
@@ -51,4 +52,33 @@ const calc = {
     }
   }
 
-}
+} // close calc obj
+
+
+const equationElement = document.getElementById('equation');
+const solutionElement = document.querySelector('div#solution');
+const buttons = document.getElementsByTagName('button');
+
+(() => {
+  for (let i = 0; i < buttons.length; i++) {
+    const button = buttons[i];
+
+
+    button.addEventListener("click", function() {
+      if (button.textContent === 'C/AC' ) {
+        equationElement.textContent = '';
+        return;
+      } else if (button.textContent === '=') {
+        console.log(equationElement.textContent);
+        let array = equationElement.textContent.split(' ');
+        console.log(array);
+        let solution = calc.run(array);
+        solutionElement.textContent = solution[0];
+        return;
+      } else {
+        equationElement.textContent += button.textContent;
+        return;
+      }
+    });
+  }
+})();
