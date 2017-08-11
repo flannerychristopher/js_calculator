@@ -1,3 +1,7 @@
+const equationElement = document.getElementById('equation');
+const solutionElement = document.getElementById('solution');
+const buttons = document.getElementsByTagName('button');
+
 const calc = {
   run: (array) => {
     calc.multiply(array);
@@ -52,17 +56,11 @@ const calc = {
     }
   }
 
-} // close calc obj
+}; // close calc obj
 
-
-const equationElement = document.getElementById('equation');
-const solutionElement = document.querySelector('div#solution');
-const buttons = document.getElementsByTagName('button');
-
-(() => {
+(() => { // button lister
   for (let i = 0; i < buttons.length; i++) {
     const button = buttons[i];
-
 
     button.addEventListener("click", function() {
       if (button.textContent === 'C/AC' ) {
@@ -74,6 +72,7 @@ const buttons = document.getElementsByTagName('button');
         console.log(array);
         let solution = calc.run(array);
         solutionElement.textContent = solution[0];
+        equationElement.textContent = '';
         return;
       } else {
         equationElement.textContent += button.textContent;
@@ -81,4 +80,4 @@ const buttons = document.getElementsByTagName('button');
       }
     });
   }
-})();
+})(); //close button listener
