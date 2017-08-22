@@ -1,3 +1,5 @@
+// this file is code no longer being use in the project
+
 const equation = document.getElementById('equation');
 const solution = document.querySelector('div#solution');
 const buttons = document.getElementsByTagName('button');

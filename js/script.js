@@ -1,5 +1,6 @@
 const equationElement = document.getElementById('equation');
 const solutionElement = document.getElementById('solution');
+const padElement = document.getElementById('pad');
 const buttons = document.getElementsByTagName('button');
 
 const calc = {
@@ -58,26 +59,47 @@ const calc = {
 
 }; // close calc obj
 
-(() => { // button lister
-  for (let i = 0; i < buttons.length; i++) {
-    const button = buttons[i];
+// (() => {
+//   for (let i = 0; i < buttons.length; i++) {
+//     const button = buttons[i];
+//
+//     button.addEventListener("click", function() {
+//       if (button.textContent === 'C/AC' ) {
+//         equationElement.textContent = '';
+//         return;
+//       } else if (button.textContent === '=') {
+//         console.log(equationElement.textContent);
+//         let array = equationElement.textContent.split(' ');
+//         console.log(array);
+//         let solution = calc.run(array);
+//         solutionElement.textContent = solution[0];
+//         equationElement.textContent = '';
+//         return;
+//       } else {
+//         equationElement.textContent += button.textContent;
+//         return;
+//       }
+//     });
+//   }
+// })();
 
-    button.addEventListener("click", function() {
-      if (button.textContent === 'C/AC' ) {
-        equationElement.textContent = '';
-        return;
-      } else if (button.textContent === '=') {
-        console.log(equationElement.textContent);
-        let array = equationElement.textContent.split(' ');
-        console.log(array);
-        let solution = calc.run(array);
-        solutionElement.textContent = solution[0];
-        equationElement.textContent = '';
-        return;
-      } else {
-        equationElement.textContent += button.textContent;
-        return;
-      }
-    });
-  }
-})(); //close button listener
+(() => { // button handler
+  padElement.addEventListener('click', (e) => {
+    let x = e.target;
+    if (x.textContent === 'C/AC' ) {
+      equationElement.textContent = '';
+      return;
+    } else if (x.textContent === '=') {
+      console.log(equationElement.textContent);
+      let array = equationElement.textContent.split(' ');
+      console.log(array);
+      let solution = calc.run(array);
+      solutionElement.textContent = solution[0];
+      equationElement.textContent = '';
+      return;
+    } else {
+      equationElement.textContent += x.textContent;
+      return;
+    }
+  }, false);
+})();
