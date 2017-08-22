@@ -1,7 +1,6 @@
 const equationElement = document.getElementById('equation');
 const solutionElement = document.getElementById('solution');
 const padElement = document.getElementById('pad');
-const buttons = document.getElementsByTagName('button');
 
 const calc = {
   run: (array) => {
@@ -19,7 +18,7 @@ const calc = {
         let answer = parseInt(array[i-1]) * parseInt(array[i+1]);
         array.splice( array.indexOf(array[i-1]), 3, answer );
         console.log(array);
-        if ( array.length ) calc.multiply(array);
+        if ( array.length > 1 ) calc.multiply(array);
       }
     }
   },
@@ -30,7 +29,7 @@ const calc = {
         let answer = parseInt(array[i-1]) / parseInt(array[i+1]);
         array.splice( array.indexOf( array[i-1]), 3, answer );
         console.log(array);
-        if ( array.length ) calc.divide(array);
+        if ( array.length > 1 ) calc.divide(array);
       }
     }
   },
@@ -41,7 +40,7 @@ const calc = {
         let answer = parseInt(array[i-1]) + parseInt(array[i+1]);
         array.splice( array.indexOf( array[i-1]), 3, answer );
         console.log(array);
-        if ( array.length ) calc.add(array);
+        if ( array.length > 1 ) calc.add(array);
       }
     }
   },
@@ -52,38 +51,14 @@ const calc = {
         let answer = parseInt(array[i-1] - parseInt(array[i+1]));
         array.splice( array.indexOf( array[i-1]), 3, answer );
         console.log(array);
-        if ( array.length ) calc.subtract(array);
+        if ( array.length > 1 ) calc.subtract(array);
       }
     }
   }
 
 }; // close calc obj
 
-// (() => {
-//   for (let i = 0; i < buttons.length; i++) {
-//     const button = buttons[i];
-//
-//     button.addEventListener("click", function() {
-//       if (button.textContent === 'C/AC' ) {
-//         equationElement.textContent = '';
-//         return;
-//       } else if (button.textContent === '=') {
-//         console.log(equationElement.textContent);
-//         let array = equationElement.textContent.split(' ');
-//         console.log(array);
-//         let solution = calc.run(array);
-//         solutionElement.textContent = solution[0];
-//         equationElement.textContent = '';
-//         return;
-//       } else {
-//         equationElement.textContent += button.textContent;
-//         return;
-//       }
-//     });
-//   }
-// })();
-
-(() => { // button handler
+(() => { // click handler
   padElement.addEventListener('click', (e) => {
     let x = e.target;
     if (x.textContent === 'C/AC' ) {
